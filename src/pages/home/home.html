@@ -1,15 +1,33 @@
 <ion-header>
   <ion-navbar>
-      <ion-buttons end>
-          <button (click)="addItem()" ion-button icon-only>
-            <ion-icon name="add-circle-outline"></ion-icon>
-          </button>
-        </ion-buttons>
+    <ion-buttons end>
+      <button (click)="addItem()" ion-button icon-only>
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <h2>Oggetti prestati</h2>
-  
+  <ion-list>
+    <ion-item-sliding #item *ngFor="let oggetto of oggetti">
+        <ion-item color="{{oggetto.oggettoTornato ? 'secondary': 'danger'}}">
+            <ion-avatar item-start>
+                <img src="img/slimer.png">
+              </ion-avatar>
+            <h2>{{oggetto.nome}}</h2>
+            <p>a {{oggetto.nomeUser}} • data {{oggetto.data | date: 'shortDate'}}</p>
+        </ion-item>
+        <ion-item-options side="left">
+          <button ion-button>Visualizza</button>
+          <button ion-button (click)="modificaOggetto(oggetto)" color="secondary">Modifica</button>
+        </ion-item-options>
+    
+        <ion-item-options side="right">
+          <button ion-button (click)="rimuoviOggetto(oggetto)" color="dark" ><ion-icon name="close-circle-outline"></ion-icon></button>
+        </ion-item-options>
+      </ion-item-sliding>
+  </ion-list>
 </ion-content>

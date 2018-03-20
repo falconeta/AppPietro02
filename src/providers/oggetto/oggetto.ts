@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Oggetto } from '../../models/oggetto';
 import { Observable } from 'rxjs/Observable';
@@ -13,10 +12,10 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class OggettoProvider {
   oggetti: Oggetto[] = [];
-  constructor(public http: HttpClient) {
+  constructor() {
     console.log('Hello OggettoProvider Provider');
     this.oggetti = [
-    {id: 1, nome: 'pentola', nomeUser: 'vittorio', data: new Date(), oggettoTornato: false, foto: 'fotoPentola'},
+    {id: 1, nome: 'pentola', nomeUser: 'vittorio', data: new Date(), oggettoTornato: true, foto: 'fotoPentola'},
     {id: 2, nome: 'scopa', nomeUser: 'jonny', data: new Date(), oggettoTornato: false, foto: 'fotoScopa'}];
   }
   // aggiunge un nuovo oggetto alla lista
@@ -36,5 +35,6 @@ export class OggettoProvider {
     this.oggetti.forEach((item, index) => {
       if(item.id === id) this.oggetti.splice(index,1);
     });
+    alert('rimosso');
   }
 }
