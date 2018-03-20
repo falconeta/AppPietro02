@@ -39,6 +39,7 @@ oggetto: Oggetto;
 
   saveModify(){
     alert('sono in modifica');
+    this.oggettoProvider.modifyOggetto();
     this.navCtrl.push(HomePage);
   }
   saveAdd(){

@@ -21,6 +21,7 @@ export class OggettoProvider {
   }
   // aggiunge un nuovo oggetto alla lista
   addOggetto(oggetto: Oggetto): void {
+    oggetto.id = this.oggetti.length+1;
     this.oggetti.push(oggetto);
     this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
   }
@@ -37,6 +38,10 @@ export class OggettoProvider {
     this.oggetti.forEach((item, index) => {
       if(item.id === id) this.oggetti.splice(index,1);
     });
+    this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
     alert('rimosso');
+  }
+  modifyOggetto(){
+    this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
   }
 }

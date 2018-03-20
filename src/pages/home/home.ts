@@ -18,7 +18,8 @@ export class HomePage {
       this.oggetti = oggetti;
       alert('si');
       this.oggettoProvider.setOggetti(this.oggetti);
-      }).catch(() => {
+      }).catch((error) => {
+        console.log(error);
         alert('no');
         this.oggettoProvider.setOggetti(this.oggetti);
       });
