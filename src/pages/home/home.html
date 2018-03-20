@@ -13,7 +13,7 @@
   <h2>Oggetti prestati</h2>
   <ion-list>
     <ion-item-sliding #item *ngFor="let oggetto of oggetti">
-        <ion-item color="{{oggetto.oggettoTornato ? 'secondary': 'danger'}}">
+        <ion-item color="{{oggetto.oggettoTornato ? 'danger' : 'secondary'}}">
             <ion-avatar item-start>
                 <img src="img/slimer.png">
               </ion-avatar>

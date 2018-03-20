@@ -29,8 +29,12 @@
     </ion-item>
     <ion-item>
       <ion-label>Foto</ion-label>
-      <ion-input [(ngModel)]="oggetto.nomeUser" name="nomeUser"></ion-input>
+      <ion-input [(ngModel)]="oggetto.foto" name="foto"></ion-input>
     </ion-item>
+    <ion-item>
+        <ion-label>Prestato</ion-label>
+        <ion-toggle [(ngModel)]="oggetto.oggettoTornato" name="oggettoTornato"></ion-toggle>
+      </ion-item>
     <button ion-button type="submit" block>Salva</button>
   </form>
 </ion-content>
