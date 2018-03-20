@@ -12,18 +12,31 @@ import { NativeStorage } from '@ionic-native/native-storage';
 @Injectable()
 export class OggettoProvider {
   oggetti: Oggetto[] = [];
+  boolPromise = false;
   date: string = new Date().toISOString();
   constructor(private nativeStorage: NativeStorage) {
-    nativeStorage.getItem('oggetti').then(data => this.oggetti = data);
+    
   }
   // aggiunge un nuovo oggetto alla lista
   addOggetto(oggetto: Oggetto): void {
     this.oggetti.push(oggetto);
-    this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage'));
+    this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
   }
   // restituisce l'array di oggetti
   getOggetti(): Observable<Oggetto[]> {
-    return of(this.oggetti);
+    this.boolPromise = false;
+    this.nativeStorage.getItem('oggetti').then(data => {
+      this.oggetti = data;
+      alert('data '+ data.length);
+      this.boolPromise = true;
+    }).catch(error => {
+      alert('error');
+      this.boolPromise = true;
+    });
+      if(this.boolPromise){
+        alert(this.oggetti.length);
+        return of(this.oggetti);
+      }
   }
   // restituisce oggetto con avente l'id corrispondente
   getOggetto(id: number): Observable<Oggetto> { 
