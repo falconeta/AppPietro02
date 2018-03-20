@@ -22,7 +22,7 @@ export class OggettoProvider {
   // aggiunge un nuovo oggetto alla lista
   addOggetto(oggetto: Oggetto): void {
     this.oggetti.push(oggetto);
-    this.nativeStorage.setItem('test', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
+    this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
   }
   // restituisce l'array di oggetti
   getOggetti(): Observable<Oggetto[]> {

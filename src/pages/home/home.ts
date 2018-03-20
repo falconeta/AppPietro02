@@ -11,11 +11,10 @@ import { NativeStorage } from '@ionic-native/native-storage';
 export class HomePage {
   oggetti: Oggetto[] = [];
   constructor(private nativeStorage: NativeStorage, private oggettoProvider: OggettoProvider, public navCtrl: NavController) {
-    
-    // this.oggettoProvider.getOggetti().subscribe(oggetti => this.oggetti = oggetti);
+
   }
   ionViewDidLoad(){
-    this.nativeStorage.getItem('test').then(oggetti => {
+    this.nativeStorage.getItem('oggetti').then(oggetti => {
       this.oggetti = oggetti;
       alert('si');
       this.oggettoProvider.setOggetti(this.oggetti);
