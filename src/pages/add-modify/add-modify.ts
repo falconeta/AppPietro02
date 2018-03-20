@@ -16,11 +16,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class AddModifyPage {
 selector: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.selector = this.navParams.get('add');
+    this.selector = this.navParams.get('selector');
+    this.selector === 'modifica' ? this.modifyPage() : this.createPage();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddModifyPage');
   }
 
+  modifyPage(){
+    
+  }
+
+  createPage(){
+
+  }
 }
