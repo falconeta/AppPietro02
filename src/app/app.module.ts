@@ -13,6 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AddModifyPage } from '../pages/add-modify/add-modify';
 import { OggettoProvider } from '../providers/oggetto/oggetto';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Camera } from '@ionic-native/camera';
+import { Device } from '@ionic-native/device';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    OggettoProvider, NativeStorage
+    OggettoProvider, NativeStorage, Camera, Device
   ]
 })
 export class AppModule {}

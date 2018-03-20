@@ -15,7 +15,7 @@
     <ion-item-sliding #item *ngFor="let oggetto of oggetti">
         <ion-item color="{{oggetto.oggettoTornato ? 'danger' : 'secondary'}}">
             <ion-avatar item-start>
-                <img src="img/slimer.png">
+                <img src="{{oggetto.foto}}">
               </ion-avatar>
             <h2>{{oggetto.nome}}</h2>
             <p>a {{oggetto.nomeUser}} • data {{oggetto.data | date: 'dd/MM/yy'}}</p>

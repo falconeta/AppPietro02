@@ -28,8 +28,10 @@
       <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="oggetto.data" name="data"></ion-datetime>
     </ion-item>
     <ion-item>
-      <ion-label>Foto</ion-label>
-      <ion-input [(ngModel)]="oggetto.foto" name="foto"></ion-input>
+      <!-- <ion-label>Foto</ion-label> -->
+      <button ion-button type="button" (click)="getFoto()">foto</button>
+      <img src="{{oggetto.foto}}" alt="">
+      <!-- <ion-input [(ngModel)]="oggetto.foto" name="foto"></ion-input> -->
     </ion-item>
     <ion-item>
         <ion-label>Prestato</ion-label>
