@@ -15,6 +15,9 @@ export class OggettoProvider {
   oggetti: Oggetto[] = [];
   constructor(public http: HttpClient) {
     console.log('Hello OggettoProvider Provider');
+    this.oggetti = [
+    {id: 1, nome: 'pentola', nomeUser: 'vittorio', data: new Date(), oggettoTornato: false, foto: 'fotoPentola'},
+    {id: 2, nome: 'scopa', nomeUser: 'jonny', data: new Date(), oggettoTornato: false, foto: 'fotoScopa'}];
   }
   // aggiunge un nuovo oggetto alla lista
   addOggetto(oggetto: Oggetto): void {
