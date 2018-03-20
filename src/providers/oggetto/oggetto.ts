@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Oggetto } from '../../models/oggetto';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-
+import { NativeStorage } from '@ionic-native/native-storage';
 /*
   Generated class for the OggettoProvider provider.
 
@@ -12,20 +12,22 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class OggettoProvider {
   oggetti: Oggetto[] = [];
+  boolPromise = false;
   date: string = new Date().toISOString();
-  constructor() {
-    console.log('Hello OggettoProvider Provider');
-    this.oggetti = [
-    {id: 1, nome: 'pentola', nomeUser: 'vittorio', data: this.date, oggettoTornato: true, foto: 'fotoPentola'},
-    {id: 2, nome: 'scopa', nomeUser: 'jonny', data: this.date, oggettoTornato: false, foto: 'fotoScopa'}];
+  constructor(private nativeStorage: NativeStorage) {
+  }
+  setOggetti(oggetti: Oggetto[]){
+    this.oggetti = oggetti;
   }
   // aggiunge un nuovo oggetto alla lista
   addOggetto(oggetto: Oggetto): void {
+    oggetto.id = this.oggetti.length+1;
     this.oggetti.push(oggetto);
+    this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
   }
   // restituisce l'array di oggetti
   getOggetti(): Observable<Oggetto[]> {
-    return of(this.oggetti);
+        return of(this.oggetti);
   }
   // restituisce oggetto con avente l'id corrispondente
   getOggetto(id: number): Observable<Oggetto> { 
@@ -36,6 +38,10 @@ export class OggettoProvider {
     this.oggetti.forEach((item, index) => {
       if(item.id === id) this.oggetti.splice(index,1);
     });
+    this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
     alert('rimosso');
+  }
+  modifyOggetto(){
+    this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
   }
 }
