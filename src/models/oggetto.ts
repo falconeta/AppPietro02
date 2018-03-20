@@ -1,4 +1,5 @@
 export class Oggetto{
+    id: number;
     nome: string;
     nomeUser: string;
     data: Date;

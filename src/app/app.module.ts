@@ -11,6 +11,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AddModifyPage } from '../pages/add-modify/add-modify';
+import { OggettoProvider } from '../providers/oggetto/oggetto';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AddModifyPage } from '../pages/add-modify/add-modify';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    OggettoProvider
   ]
 })
 export class AppModule {}
