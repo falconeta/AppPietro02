@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Oggetto } from '../../models/oggetto';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-
+import { NativeStorage } from '@ionic-native/native-storage';
 /*
   Generated class for the OggettoProvider provider.
 
@@ -13,15 +13,13 @@ import { of } from 'rxjs/observable/of';
 export class OggettoProvider {
   oggetti: Oggetto[] = [];
   date: string = new Date().toISOString();
-  constructor() {
-    console.log('Hello OggettoProvider Provider');
-    this.oggetti = [
-    {id: 1, nome: 'pentola', nomeUser: 'vittorio', data: this.date, oggettoTornato: true, foto: 'fotoPentola'},
-    {id: 2, nome: 'scopa', nomeUser: 'jonny', data: this.date, oggettoTornato: false, foto: 'fotoScopa'}];
+  constructor(private nativeStorage: NativeStorage) {
+    nativeStorage.getItem('oggetti').then(data => this.oggetti = data);
   }
   // aggiunge un nuovo oggetto alla lista
   addOggetto(oggetto: Oggetto): void {
     this.oggetti.push(oggetto);
+    this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage'));
   }
   // restituisce l'array di oggetti
   getOggetti(): Observable<Oggetto[]> {
