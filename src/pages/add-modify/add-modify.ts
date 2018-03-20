@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Oggetto } from '../../models/oggetto';
+import { HomePage } from '../home/home';
+import { OggettoProvider } from '../../providers/oggetto/oggetto';
 
 /**
  * Generated class for the AddModifyPage page.
@@ -15,7 +18,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddModifyPage {
 selector: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+oggetto: Oggetto;
+  constructor(private oggettoProvider: OggettoProvider, public navCtrl: NavController, public navParams: NavParams) {
     this.selector = this.navParams.get('selector');
     this.selector === 'modifica' ? this.modifyPage() : this.createPage();
   }
@@ -25,10 +29,22 @@ selector: string;
   }
 
   modifyPage(){
-    
+    this.oggetto = this.navParams.get('oggetto'); 
   }
 
   createPage(){
-
+    this.oggetto = new Oggetto; 
+    this.oggetto.data = new Date().toISOString();
   }
+
+  saveModify(){
+    alert('sono in modifica');
+    this.navCtrl.push(HomePage);
+  }
+  saveAdd(){
+    alert('sono in Add');
+    this.oggettoProvider.addOggetto(this.oggetto);
+    this.navCtrl.push(HomePage);
+  }
+
 }

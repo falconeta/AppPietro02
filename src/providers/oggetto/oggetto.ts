@@ -12,11 +12,12 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class OggettoProvider {
   oggetti: Oggetto[] = [];
+  date: string = new Date().toISOString();
   constructor() {
     console.log('Hello OggettoProvider Provider');
     this.oggetti = [
-    {id: 1, nome: 'pentola', nomeUser: 'vittorio', data: new Date(), oggettoTornato: true, foto: 'fotoPentola'},
-    {id: 2, nome: 'scopa', nomeUser: 'jonny', data: new Date(), oggettoTornato: false, foto: 'fotoScopa'}];
+    {id: 1, nome: 'pentola', nomeUser: 'vittorio', data: this.date, oggettoTornato: true, foto: 'fotoPentola'},
+    {id: 2, nome: 'scopa', nomeUser: 'jonny', data: this.date, oggettoTornato: false, foto: 'fotoScopa'}];
   }
   // aggiunge un nuovo oggetto alla lista
   addOggetto(oggetto: Oggetto): void {

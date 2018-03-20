@@ -14,5 +14,27 @@
 
 
 <ion-content padding>
-
+  <form (ngSubmit)="selector === 'modifica' ? saveModify() : saveAdd()">
+    <ion-item>
+      <ion-label>Nome oggetto</ion-label>
+      <ion-input type="text" [(ngModel)]="oggetto.nome" name="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Prestato a</ion-label>
+      <ion-input [(ngModel)]="oggetto.nomeUser" name="nomeUser"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Quando</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="oggetto.data" name="data"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Foto</ion-label>
+      <ion-input [(ngModel)]="oggetto.foto" name="foto"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Prestato</ion-label>
+        <ion-toggle [(ngModel)]="oggetto.oggettoTornato" name="oggettoTornato"></ion-toggle>
+      </ion-item>
+    <button ion-button type="submit" block>Salva</button>
+  </form>
 </ion-content>

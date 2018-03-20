@@ -20,6 +20,6 @@ export class HomePage {
     this.oggettoProvider.removeOggetto(oggetto.id);
   }
   modificaOggetto(oggetto: Oggetto) {
-    this.navCtrl.push(AddModifyPage, {selector: 'Modifica', oggetto: oggetto} );
+    this.navCtrl.push(AddModifyPage, {selector: 'modifica', oggetto: oggetto} );
   }
 }
