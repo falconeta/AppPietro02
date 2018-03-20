@@ -34,7 +34,7 @@ oggetto: Oggetto;
 
   createPage(){
     this.oggetto = new Oggetto; 
-    this.oggetto.data = new Date();
+    this.oggetto.data = new Date().toISOString();
   }
 
   saveModify(){
