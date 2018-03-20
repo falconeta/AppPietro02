@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'add-modify.html',
 })
 export class AddModifyPage {
-selector: string = 'asd';
+selector: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.selector = this.navParams.get('add');
   }
