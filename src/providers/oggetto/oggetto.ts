@@ -28,4 +28,10 @@ export class OggettoProvider {
   getOggetto(id: number): Observable<Oggetto> { 
     return of(this.oggetti.find(oggetto => oggetto.id === id));
   }
+  // rimuove l'oggetto dall'array
+  removeOggetto(id: number): void{
+    this.oggetti.forEach((item, index) => {
+      if(item.id === id) this.oggetti.splice(index,1);
+    });
+  }
 }
