@@ -15,28 +15,18 @@ export class OggettoProvider {
   boolPromise = false;
   date: string = new Date().toISOString();
   constructor(private nativeStorage: NativeStorage) {
-    
+  }
+  setOggetti(oggetti: Oggetto[]){
+    this.oggetti = oggetti;
   }
   // aggiunge un nuovo oggetto alla lista
   addOggetto(oggetto: Oggetto): void {
     this.oggetti.push(oggetto);
-    this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
+    this.nativeStorage.setItem('test', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
   }
   // restituisce l'array di oggetti
   getOggetti(): Observable<Oggetto[]> {
-    this.boolPromise = false;
-    this.nativeStorage.getItem('oggetti').then(data => {
-      this.oggetti = data;
-      alert('data '+ data.length);
-      this.boolPromise = true;
-    }).catch(error => {
-      alert('error');
-      this.boolPromise = true;
-    });
-      if(this.boolPromise){
-        alert(this.oggetti.length);
         return of(this.oggetti);
-      }
   }
   // restituisce oggetto con avente l'id corrispondente
   getOggetto(id: number): Observable<Oggetto> { 
