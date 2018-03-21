@@ -5,27 +5,27 @@
         <ion-icon name="add-circle"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Home</ion-title>
+    <ion-title><h1 class="titoloTesta">Oggetti Prestati</h1> </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Oggetti prestati</h2>
+<ion-content class="container">
+  <h1 class="titolo"></h1>
   <ion-list>
-    <ion-item-sliding #item *ngFor="let oggetto of oggetti">
-        <ion-item  (click)="modificaOggetto(oggetto)" color="{{oggetto.oggettoTornato ? 'danger' : 'secondary'}}">
-            <ion-avatar item-start>
+    <ion-item-sliding  #item *ngFor="let oggetto of oggetti">
+        <ion-item  (click)="modificaOggetto(oggetto)" color="{{oggetto.oggettoTornato ? 'rossoDelicato' : 'verdeDelicato'}}">
+          <ion-thumbnail item-start>
                 <img src="{{oggetto.foto}}">
-              </ion-avatar>
-            <h2>{{oggetto.nome}}</h2>
-            <p>a {{oggetto.nomeUser}} • data {{oggetto.data | date: 'dd/MM/yy'}}</p>
+           </ion-thumbnail>
+            <h1>{{oggetto.nome}}</h1>
+            <h2>prestato a {{oggetto.nomeUser}} • il {{oggetto.data | date: 'dd/MM/yy'}}</h2>
         </ion-item>
         <ion-item-options side="left">
-          <button ion-button color="{{oggetto.oggettoTornato ? 'secondary' : 'danger'}}" (click)="toogleOggettoTornato(oggetto)">{{oggetto.oggettoTornato ? 'torna': 'presta'}}</button>
+          <button ion-button  class="buttonSlide" color="{{oggetto.oggettoTornato ? 'secondary' : 'danger'}}" (click)="toogleOggettoTornato(oggetto)">{{oggetto.oggettoTornato ? 'torna': 'presta'}}</button>
         </ion-item-options>
     
         <ion-item-options side="right">
-          <button ion-button (click)="rimuoviOggetto(oggetto)" color="dark" ><ion-icon name="close-circle"></ion-icon></button>
+          <button ion-button icon-only class="buttonSlide"  (click)="rimuoviOggetto(oggetto)" color="dark"><ion-icon class="icon" name="close-circle"></ion-icon></button>
         </ion-item-options>
       </ion-item-sliding>
   </ion-list>

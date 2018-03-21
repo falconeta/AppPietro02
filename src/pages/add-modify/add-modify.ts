@@ -43,12 +43,12 @@ oggetto: Oggetto;
   }
 
   saveModify(){
-    alert('sono in modifica');
+    // alert('sono in modifica');
     this.oggettoProvider.modifyOggetto();
     this.viewCtrl.dismiss();
   }
   saveAdd(){
-    alert('sono in Add');
+    // alert('sono in Add');
     this.oggettoProvider.addOggetto(this.oggetto);
     this.viewCtrl.dismiss();
   }

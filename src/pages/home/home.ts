@@ -14,11 +14,11 @@ export class HomePage {
     this.plt.ready().then((readySource) => {
       this.nativeStorage.getItem('items').then(oggetti => {
         this.oggetti = oggetti;
-        alert('si');
+       // alert('si');
         this.oggettoProvider.setOggetti(this.oggetti);
         }).catch((error) => {
           console.log(error);
-          alert('no');
+          // alert('no');
           this.oggettoProvider.setOggetti(this.oggetti);
         });
     });
