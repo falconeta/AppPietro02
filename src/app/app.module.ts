@@ -15,6 +15,7 @@ import { OggettoProvider } from '../providers/oggetto/oggetto';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Camera } from '@ionic-native/camera';
 import { Device } from '@ionic-native/device';
+import { WelcomePage } from '../pages/welcome/welcome';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { Device } from '@ionic-native/device';
     ContactPage,
     HomePage,
     TabsPage,
-    AddModifyPage
+    AddModifyPage,
+    WelcomePage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { Device } from '@ionic-native/device';
     ContactPage,
     HomePage,
     TabsPage,
-    AddModifyPage
+    AddModifyPage,
+    WelcomePage
   ],
   providers: [
     StatusBar,

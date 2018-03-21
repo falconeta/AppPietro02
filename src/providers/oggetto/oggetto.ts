@@ -11,19 +11,17 @@ import { NativeStorage } from '@ionic-native/native-storage';
 */
 @Injectable()
 export class OggettoProvider {
-  oggetti: Oggetto[] = [];
-  boolPromise = false;
-  date: string = new Date().toISOString();
-  constructor(private nativeStorage: NativeStorage) {
-  }
-  setOggetti(oggetti: Oggetto[]){
+  private oggetti: Oggetto[] = [];
+  constructor(private nativeStorage: NativeStorage) {}
+  // setta la proprietà oggetti di questo servizio
+  setOggetti(oggetti: Oggetto[]): void {
     this.oggetti = oggetti;
   }
   // aggiunge un nuovo oggetto alla lista
   addOggetto(oggetto: Oggetto): void {
     oggetto.id = this.oggetti.length;
     this.oggetti.push(oggetto);
-    this.nativeStorage.setItem('items', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
+    this.nativeStorage.setItem('items', this.oggetti).then();
   }
   // restituisce l'array di oggetti
   getOggetti(): Observable<Oggetto[]> {
@@ -38,13 +36,12 @@ export class OggettoProvider {
     this.oggetti.forEach((item, index) => {
       if(item.id === oggetto.id) this.oggetti.splice(index,1);
     });
-    this.oggetti.forEach((item, index) => {
-      this.oggetti[index].id = index;
-    });
-    this.nativeStorage.setItem('items', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
+    this.oggetti.forEach((item, index) => this.oggetti[index].id = index);
+    this.nativeStorage.setItem('items', this.oggetti).then();
     alert('rimosso');
   }
+  // aggiunge la modifica al native storage
   modifyOggetto(){
-    this.nativeStorage.setItem('items', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
+    this.nativeStorage.setItem('items', this.oggetti).then();
   }
 }

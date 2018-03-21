@@ -1,2 +1,24 @@
 page-home {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    .titoloTesta{
+        color: $titoloTesta;
+        font-weight: bold;
+        // text-shadow: black 0px 0px 5px  ;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        .titolo{
+            text-align: center;
+            font-size: 3em;
+        }
+        .buttonSlide{
+            width: 10rem;
+        }
+        .icon {
+            font-size: 5rem; //Preferred size here
+        }
+    }
+    
 }
