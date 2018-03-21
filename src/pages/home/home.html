@@ -21,7 +21,7 @@
             <h2>prestato a {{oggetto.nomeUser}} • il {{oggetto.data | date: 'dd/MM/yy'}}</h2>
         </ion-item>
         <ion-item-options side="left">
-          <button ion-button  class="buttonSlide" color="{{oggetto.oggettoTornato ? 'secondary' : 'danger'}}" (click)="toogleOggettoTornato(oggetto)">{{oggetto.oggettoTornato ? 'torna': 'presta'}}</button>
+          <button ion-button  class="buttonSlide" color="{{oggetto.oggettoTornato ? 'secondary' : 'danger'}}" (click)="toogleOggettoTornato(oggetto)">{{oggetto.oggettoTornato ? 'Tornato?': 'Prestato?'}}</button>
         </ion-item-options>
     
         <ion-item-options side="right">

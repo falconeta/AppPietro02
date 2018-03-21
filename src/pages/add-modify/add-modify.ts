@@ -24,16 +24,15 @@ oggetto: Oggetto;
               public navCtrl: NavController, 
               public navParams: NavParams,
               private camera: Camera,
-              private device: Device, public viewCtrl: ViewController) {
+              private device: Device, 
+              public viewCtrl: ViewController) 
+  {// trasforma la pagina in modalità aggiungi o modifica
     this.selector = this.navParams.get('selector');
-    this.selector === 'modifica' ? this.modifyPage() : this.createPage();
+    this.selector === 'modifica' ? this.oggetto = this.navParams.get('oggetto') : this.createPage();
   }
 
   ionViewDidLoad() {
-  }
-
-  modifyPage(){
-    this.oggetto = this.navParams.get('oggetto'); 
+   
   }
 
   createPage(){
@@ -41,35 +40,33 @@ oggetto: Oggetto;
     this.oggetto.data = new Date().toISOString();
   }
 
-  saveModify(){
-    // alert('sono in modifica');
+  saveModify(){//metodo chiamato dal bottone slva in modalità modifica
     this.oggettoProvider.modifyOggetto();
     this.viewCtrl.dismiss();
   }
-  saveAdd(){
-    // alert('sono in Add');
+  saveAdd(){//metodo chiamato dal bottone slva in modalità aggiungi
     this.oggettoProvider.addOggetto(this.oggetto);
     this.viewCtrl.dismiss();
   }
-  getFoto(){
+  getFoto(){ // al click del div esegue questo metodo
     let type: number;
     this.device.platform === 'iOS' ? type = 0 : type = 1; 
     const options: CameraOptions = {
-      quality: 100,
+      quality: 20,
+      targetWidth: 1000,
+      targetHeight: 1000,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      sourceType: type 
+      sourceType: 0
     }
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
+    this.camera.getPicture(options).then((imageData) => {// cattura l'immagine 
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.oggetto.foto = base64Image;
-      // alert(base64Image);
      }, (err) => {
-      // Handle error
      });
   }
-
+  close(){
+    this.viewCtrl.dismiss();
+  }
 }

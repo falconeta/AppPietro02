@@ -7,7 +7,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title><h2 class="titoloTesta">{{selector}}</h2></ion-title>
+      <ion-buttons start>
+          <button (click)="close()" large ion-button >
+            Chiudi
+          </button>
+        </ion-buttons>
+    <ion-title>
+      <h2 class="titoloTesta">{{selector}}</h2>
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,27 +23,29 @@
 <ion-content padding>
   <form (ngSubmit)="selector === 'modifica' ? saveModify() : saveAdd()">
     <ion-item>
-      <ion-label>Nome oggetto</ion-label>
-      <ion-input type="text" [(ngModel)]="oggetto.nome" name="nome"></ion-input>
+      <ion-label color="primary" stacked>Nome oggetto</ion-label>
+      <ion-input type="text" required [(ngModel)]="oggetto.nome" name="nome"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Prestato a</ion-label>
-      <ion-input [(ngModel)]="oggetto.nomeUser" name="nomeUser"></ion-input>
+      <ion-label color="primary" stacked>Prestato a</ion-label>
+      <ion-input required [(ngModel)]="oggetto.nomeUser" name="nomeUser"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Quando</ion-label>
+      <ion-label color="primary" stacked>Quando</ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="oggetto.data" name="data"></ion-datetime>
     </ion-item>
     <ion-item>
-      <!-- <ion-label>Foto</ion-label> -->
-      <button ion-button type="button" (click)="getFoto()">foto</button>
-      <img src="{{oggetto.foto}}" alt="">
-      <!-- <ion-input [(ngModel)]="oggetto.foto" name="foto"></ion-input> -->
+      <div class="containerDivFoto">
+      <div (click)="getFoto()" class=contImage>
+        <img *ngIf="oggetto.foto !== undefined" src="{{oggetto.foto}}" alt="">
+        <ion-icon *ngIf="oggetto.foto === undefined" name="camera-outline"></ion-icon>
+      </div>
+    </div>
     </ion-item>
     <ion-item>
-        <ion-label>Prestato</ion-label>
-        <ion-toggle [(ngModel)]="oggetto.oggettoTornato" name="oggettoTornato"></ion-toggle>
-      </ion-item>
+      <ion-label color="primary">Prestato?</ion-label>
+      <ion-toggle [(ngModel)]="oggetto.oggettoTornato" name="oggettoTornato"></ion-toggle>
+    </ion-item>
     <button ion-button type="submit" block>Salva</button>
   </form>
 </ion-content>
