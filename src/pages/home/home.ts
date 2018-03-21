@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { AddModifyPage } from '../add-modify/add-modify';
 import { Oggetto } from '../../models/oggetto';
 import { OggettoProvider } from '../../providers/oggetto/oggetto';
@@ -10,19 +10,18 @@ import { NativeStorage } from '@ionic-native/native-storage';
 })
 export class HomePage {
   oggetti: Oggetto[] = [];
-  constructor(private nativeStorage: NativeStorage, private oggettoProvider: OggettoProvider, public navCtrl: NavController) {
-
-  }
-  ionViewDidLoad(){
-    this.nativeStorage.getItem('items').then(oggetti => {
-      this.oggetti = oggetti;
-      alert('si');
-      this.oggettoProvider.setOggetti(this.oggetti);
-      }).catch((error) => {
-        console.log(error);
-        alert('no');
+  constructor(public plt: Platform, private nativeStorage: NativeStorage, private oggettoProvider: OggettoProvider, public navCtrl: NavController) {
+    this.plt.ready().then((readySource) => {
+      this.nativeStorage.getItem('items').then(oggetti => {
+        this.oggetti = JSON.parse(oggetti);
+        alert('si');
         this.oggettoProvider.setOggetti(this.oggetti);
-      });
+        }).catch((error) => {
+          console.log(error);
+          alert('no');
+          this.oggettoProvider.setOggetti(this.oggetti);
+        });
+    });
   }
   addItem(){
     this.navCtrl.push(AddModifyPage, {selector: 'Aggiungi'});
@@ -32,5 +31,8 @@ export class HomePage {
   }
   modificaOggetto(oggetto: Oggetto) {
     this.navCtrl.push(AddModifyPage, {selector: 'modifica', oggetto: oggetto} );
+  }
+  clear(){
+    this.nativeStorage.clear();
   }
 }

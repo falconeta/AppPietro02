@@ -23,7 +23,7 @@ export class OggettoProvider {
   addOggetto(oggetto: Oggetto): void {
     oggetto.id = this.oggetti.length;
     this.oggetti.push(oggetto);
-    this.nativeStorage.setItem('items', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
+    this.nativeStorage.setItem('items', JSON.stringify(this.oggetti)).then(() => alert('storage '+ this.oggetti.length));
   }
   // restituisce l'array di oggetti
   getOggetti(): Observable<Oggetto[]> {
@@ -41,10 +41,10 @@ export class OggettoProvider {
     this.oggetti.forEach((item, index) => {
       this.oggetti[index].id = index;
     });
-    this.nativeStorage.setItem('items', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
+    this.nativeStorage.setItem('items', JSON.stringify(this.oggetti)).then(() => alert('storage '+ this.oggetti.length));
     alert('rimosso');
   }
   modifyOggetto(){
-    this.nativeStorage.setItem('items', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
+    this.nativeStorage.setItem('items', JSON.stringify(this.oggetti)).then(() => alert('storage '+ this.oggetti.length));
   }
 }
