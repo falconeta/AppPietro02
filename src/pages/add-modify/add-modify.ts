@@ -21,25 +21,19 @@ export class AddModifyPage {
 selector: string;
 oggetto: Oggetto;
   constructor(private oggettoProvider: OggettoProvider, 
-              public navCtrl: NavController, 
-              public navParams: NavParams,
+              private navCtrl: NavController, 
+              private navParams: NavParams,
               private camera: Camera,
               private device: Device, 
-              public viewCtrl: ViewController) 
+              private viewCtrl: ViewController) 
   {// trasforma la pagina in modalità aggiungi o modifica
     this.selector = this.navParams.get('selector');
     this.selector === 'modifica' ? this.oggetto = this.navParams.get('oggetto') : this.createPage();
   }
-
-  ionViewDidLoad() {
-   
-  }
-
   createPage(){
     this.oggetto = new Oggetto; 
     this.oggetto.data = new Date().toISOString();
   }
-
   saveModify(){//metodo chiamato dal bottone slva in modalità modifica
     this.oggettoProvider.modifyOggetto();
     this.viewCtrl.dismiss();
@@ -58,13 +52,11 @@ oggetto: Oggetto;
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      sourceType: 0
+      sourceType: type
     }
-    this.camera.getPicture(options).then((imageData) => {// cattura l'immagine 
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.oggetto.foto = base64Image;
-     }, (err) => {
-     });
+    // cattura l'immagine 
+    this.camera.getPicture(options).then(imageData => 
+      this.oggetto.foto = 'data:image/jpeg;base64,' + imageData);
   }
   close(){
     this.viewCtrl.dismiss();
