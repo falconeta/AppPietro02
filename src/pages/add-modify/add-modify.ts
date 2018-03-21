@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavParams, ViewController } from 'ionic-angular';
 import { Oggetto } from '../../models/oggetto';
 import { OggettoProvider } from '../../providers/oggetto/oggetto';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -20,8 +20,7 @@ import { Device } from '@ionic-native/device';
 export class AddModifyPage {
 selector: string;
 oggetto: Oggetto;
-  constructor(private oggettoProvider: OggettoProvider, 
-              private navCtrl: NavController, 
+  constructor(private oggettoProvider: OggettoProvider,  
               private navParams: NavParams,
               private camera: Camera,
               private device: Device, 
