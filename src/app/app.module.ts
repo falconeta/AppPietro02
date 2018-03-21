@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, ModalController, ViewController } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
@@ -42,7 +42,9 @@ import { Device } from '@ionic-native/device';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    OggettoProvider, NativeStorage, Camera, Device
+    OggettoProvider, NativeStorage, Camera, Device, 
+    ModalController, 
+    
   ]
 })
 export class AppModule {}

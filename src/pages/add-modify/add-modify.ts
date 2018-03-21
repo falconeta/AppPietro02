@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ViewController } from 'ionic-angular';
 import { Oggetto } from '../../models/oggetto';
 import { HomePage } from '../home/home';
 import { OggettoProvider } from '../../providers/oggetto/oggetto';
@@ -25,7 +25,7 @@ oggetto: Oggetto;
               public navCtrl: NavController, 
               public navParams: NavParams,
               private camera: Camera,
-              private device: Device) {
+              private device: Device, public viewCtrl: ViewController) {
     this.selector = this.navParams.get('selector');
     this.selector === 'modifica' ? this.modifyPage() : this.createPage();
   }
@@ -46,12 +46,12 @@ oggetto: Oggetto;
   saveModify(){
     alert('sono in modifica');
     this.oggettoProvider.modifyOggetto();
-    this.navCtrl.push(HomePage);
+    this.viewCtrl.dismiss();
   }
   saveAdd(){
     alert('sono in Add');
     this.oggettoProvider.addOggetto(this.oggetto);
-    this.navCtrl.push(HomePage);
+    this.viewCtrl.dismiss();
   }
   getFoto(){
     let type: number;

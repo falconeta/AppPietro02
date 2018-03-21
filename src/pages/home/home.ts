@@ -1,7 +1,7 @@
+import { Oggetto } from './../../models/oggetto';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform, ModalController } from 'ionic-angular';
 import { AddModifyPage } from '../add-modify/add-modify';
-import { Oggetto } from '../../models/oggetto';
 import { OggettoProvider } from '../../providers/oggetto/oggetto';
 import { NativeStorage } from '@ionic-native/native-storage';
 @Component({
@@ -10,27 +10,34 @@ import { NativeStorage } from '@ionic-native/native-storage';
 })
 export class HomePage {
   oggetti: Oggetto[] = [];
-  constructor(private nativeStorage: NativeStorage, private oggettoProvider: OggettoProvider, public navCtrl: NavController) {
-
-  }
-  ionViewDidLoad(){
-    this.nativeStorage.getItem('oggetti').then(oggetti => {
-      this.oggetti = oggetti;
-      alert('si');
-      this.oggettoProvider.setOggetti(this.oggetti);
-      }).catch((error) => {
-        console.log(error);
-        alert('no');
+  constructor(private modalCtrl: ModalController, public plt: Platform, private nativeStorage: NativeStorage, private oggettoProvider: OggettoProvider, public navCtrl: NavController) {
+    this.plt.ready().then((readySource) => {
+      this.nativeStorage.getItem('items').then(oggetti => {
+        this.oggetti = oggetti;
+        alert('si');
         this.oggettoProvider.setOggetti(this.oggetti);
-      });
+        }).catch((error) => {
+          console.log(error);
+          alert('no');
+          this.oggettoProvider.setOggetti(this.oggetti);
+        });
+    });
   }
   addItem(){
-    this.navCtrl.push(AddModifyPage, {selector: 'Aggiungi'});
+    let modal = this.modalCtrl.create(AddModifyPage, {selector: 'Aggiungi'});
+    modal.present();
+    
   }
   rimuoviOggetto(oggetto: Oggetto){
-    this.oggettoProvider.removeOggetto(oggetto.id);
+    this.oggettoProvider.removeOggetto(oggetto);
   }
   modificaOggetto(oggetto: Oggetto) {
-    this.navCtrl.push(AddModifyPage, {selector: 'modifica', oggetto: oggetto} );
+    let modal = this.modalCtrl.create(AddModifyPage, {selector: 'modifica', oggetto: oggetto});
+    modal.present();
   }
+  toogleOggettoTornato(oggetto: Oggetto){
+    oggetto.oggettoTornato ? oggetto.oggettoTornato = false : oggetto.oggettoTornato = true;
+    this.oggettoProvider.modifyOggetto(); 
+  }
+
 }

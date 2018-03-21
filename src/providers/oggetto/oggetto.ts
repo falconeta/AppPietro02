@@ -21,9 +21,9 @@ export class OggettoProvider {
   }
   // aggiunge un nuovo oggetto alla lista
   addOggetto(oggetto: Oggetto): void {
-    oggetto.id = this.oggetti.length+1;
+    oggetto.id = this.oggetti.length;
     this.oggetti.push(oggetto);
-    this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
+    this.nativeStorage.setItem('items', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
   }
   // restituisce l'array di oggetti
   getOggetti(): Observable<Oggetto[]> {
@@ -34,14 +34,17 @@ export class OggettoProvider {
     return of(this.oggetti.find(oggetto => oggetto.id === id));
   }
   // rimuove l'oggetto dall'array
-  removeOggetto(id: number): void{
+  removeOggetto(oggetto: Oggetto): void{
     this.oggetti.forEach((item, index) => {
-      if(item.id === id) this.oggetti.splice(index,1);
+      if(item.id === oggetto.id) this.oggetti.splice(index,1);
     });
-    this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
+    this.oggetti.forEach((item, index) => {
+      this.oggetti[index].id = index;
+    });
+    this.nativeStorage.setItem('items', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
     alert('rimosso');
   }
   modifyOggetto(){
-    this.nativeStorage.setItem('oggetti', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
+    this.nativeStorage.setItem('items', this.oggetti).then(() => alert('storage '+ this.oggetti.length));
   }
 }
