@@ -13,7 +13,7 @@
   <h2>Oggetti prestati</h2>
   <ion-list>
     <ion-item-sliding #item *ngFor="let oggetto of oggetti">
-        <ion-item color="{{oggetto.oggettoTornato ? 'danger' : 'secondary'}}">
+        <ion-item (click)="visualizza()" color="{{oggetto.oggettoTornato ? 'danger' : 'secondary'}}">
             <ion-avatar item-start>
                 <img src="{{oggetto.foto}}">
               </ion-avatar>
@@ -21,7 +21,7 @@
             <p>a {{oggetto.nomeUser}} • data {{oggetto.data | date: 'dd/MM/yy'}}</p>
         </ion-item>
         <ion-item-options side="left">
-          <button ion-button>Visualizza</button>
+          <button ion-button (click)="toogleOggettoTornato(oggetto)">{{oggetto.oggettoTornato ? 'torna': 'presta'}}</button>
           <button ion-button (click)="modificaOggetto(oggetto)" color="secondary">Modifica</button>
         </ion-item-options>
     
@@ -29,6 +29,5 @@
           <button ion-button (click)="rimuoviOggetto(oggetto)" color="dark" ><ion-icon name="close-circle"></ion-icon></button>
         </ion-item-options>
       </ion-item-sliding>
-      <button ion-button (click)="clear()">clear</button>
   </ion-list>
 </ion-content>
