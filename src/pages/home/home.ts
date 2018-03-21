@@ -1,6 +1,6 @@
 import { Oggetto } from './../../models/oggetto';
 import { Component } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, Platform, ModalController } from 'ionic-angular';
 import { AddModifyPage } from '../add-modify/add-modify';
 import { OggettoProvider } from '../../providers/oggetto/oggetto';
 import { NativeStorage } from '@ionic-native/native-storage';
@@ -10,7 +10,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 })
 export class HomePage {
   oggetti: Oggetto[] = [];
-  constructor(public plt: Platform, private nativeStorage: NativeStorage, private oggettoProvider: OggettoProvider, public navCtrl: NavController) {
+  constructor(private modalCtrl: ModalController, public plt: Platform, private nativeStorage: NativeStorage, private oggettoProvider: OggettoProvider, public navCtrl: NavController) {
     this.plt.ready().then((readySource) => {
       this.nativeStorage.getItem('items').then(oggetti => {
         this.oggetti = oggetti;
@@ -24,16 +24,16 @@ export class HomePage {
     });
   }
   addItem(){
-    this.navCtrl.push(AddModifyPage, {selector: 'Aggiungi'});
+    let modal = this.modalCtrl.create(AddModifyPage, {selector: 'Aggiungi'});
+    modal.present();
+    
   }
   rimuoviOggetto(oggetto: Oggetto){
     this.oggettoProvider.removeOggetto(oggetto);
   }
   modificaOggetto(oggetto: Oggetto) {
-    this.navCtrl.push(AddModifyPage, {selector: 'modifica', oggetto: oggetto} );
-  }
-  visualizza(){
-    alert('funzio');
+    let modal = this.modalCtrl.create(AddModifyPage, {selector: 'modifica', oggetto: oggetto});
+    modal.present();
   }
   toogleOggettoTornato(oggetto: Oggetto){
     oggetto.oggettoTornato ? oggetto.oggettoTornato = false : oggetto.oggettoTornato = true;
