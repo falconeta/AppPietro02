@@ -14,7 +14,7 @@ export class HomePage {
 
   }
   ionViewDidLoad(){
-    this.nativeStorage.getItem('oggetti').then(oggetti => {
+    this.nativeStorage.getItem('items').then(oggetti => {
       this.oggetti = oggetti;
       alert('si');
       this.oggettoProvider.setOggetti(this.oggetti);
@@ -28,7 +28,7 @@ export class HomePage {
     this.navCtrl.push(AddModifyPage, {selector: 'Aggiungi'});
   }
   rimuoviOggetto(oggetto: Oggetto){
-    this.oggettoProvider.removeOggetto(oggetto.id);
+    this.oggettoProvider.removeOggetto(oggetto);
   }
   modificaOggetto(oggetto: Oggetto) {
     this.navCtrl.push(AddModifyPage, {selector: 'modifica', oggetto: oggetto} );
