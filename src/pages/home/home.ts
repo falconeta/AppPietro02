@@ -4,6 +4,7 @@ import { NavController, Platform, ModalController } from 'ionic-angular';
 import { AddModifyPage } from '../add-modify/add-modify';
 import { OggettoProvider } from '../../providers/oggetto/oggetto';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { WelcomePage } from '../welcome/welcome';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -18,6 +19,8 @@ export class HomePage {
         this.oggettoProvider.setOggetti(this.oggetti);
         }).catch((error) => {
           console.log(error);
+          let modal = this.modalCtrl.create(WelcomePage);
+          modal.present();
           // alert('no');
           this.oggettoProvider.setOggetti(this.oggetti);
         });

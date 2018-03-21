@@ -1,0 +1,14 @@
+page-welcome {
+    .content{
+        height: 80%;
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        h1{
+            color: rgb(122, 120, 120);
+            font-size: 3em;
+            margin: 20%;
+        }
+    }
+}

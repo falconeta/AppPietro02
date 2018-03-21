@@ -30,7 +30,6 @@ oggetto: Oggetto;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddModifyPage');
   }
 
   modifyPage(){
