@@ -12,35 +12,37 @@ import { WelcomePage } from '../welcome/welcome';
 export class HomePage {
   oggetti: Oggetto[] = [];
   constructor(private modalCtrl: ModalController, public plt: Platform, private nativeStorage: NativeStorage, private oggettoProvider: OggettoProvider, public navCtrl: NavController) {
+    // al caricamento dei plugin cordova esegui il codice
     this.plt.ready().then((readySource) => {
       this.nativeStorage.getItem('items').then(oggetti => {
         this.oggetti = oggetti;
-       // alert('si');
         this.oggettoProvider.setOggetti(this.oggetti);
         }).catch((error) => {
           console.log(error);
           let modal = this.modalCtrl.create(WelcomePage);
-          modal.present();
-          // alert('no');
+          modal.present(); // se non esiste l'item nel native storage apri la modale welcome
           this.oggettoProvider.setOggetti(this.oggetti);
         });
     });
   }
+  // avvia modale in modalità aggiungi
   addItem(){
     let modal = this.modalCtrl.create(AddModifyPage, {selector: 'Aggiungi'});
     modal.present();
-    
   }
+  // rimuove oggetto dall'array oggetti e salva nel native storage
   rimuoviOggetto(oggetto: Oggetto){
     this.oggettoProvider.removeOggetto(oggetto);
   }
+  // avvia modale in modalità modifica
   modificaOggetto(oggetto: Oggetto) {
     let modal = this.modalCtrl.create(AddModifyPage, {selector: 'modifica', oggetto: oggetto});
     modal.present();
   }
+  // imposta la propietà booleana(toogle) dell'oogetto oggetto
   toogleOggettoTornato(oggetto: Oggetto){
     oggetto.oggettoTornato ? oggetto.oggettoTornato = false : oggetto.oggettoTornato = true;
-    this.oggettoProvider.modifyOggetto(); 
+    this.oggettoProvider.modifyOggetto(); // salva native storage
   }
 
 }
