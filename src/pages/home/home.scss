@@ -3,15 +3,13 @@ page-home {
     .titoloTesta{
         color: $titoloTesta;
         font-weight: bold;
-        // text-shadow: black 0px 0px 5px  ;
     }
     .container{
         display: flex;
         flex-direction: column;
         align-content: center;
-        .titolo{
-            text-align: center;
-            font-size: 3em;
+        h2{
+          font-size: 0.8em;
         }
         .buttonSlide{
             width: 10rem;
@@ -20,5 +18,5 @@ page-home {
             font-size: 5rem; //Preferred size here
         }
     }
-    
+
 }

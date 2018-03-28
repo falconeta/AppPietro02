@@ -10,22 +10,22 @@
 </ion-header>
 
 <ion-content class="container">
-  <h1 class="titolo"></h1>
   <ion-list>
     <ion-item-sliding  #item *ngFor="let oggetto of oggetti">
-        <ion-item  (click)="modificaOggetto(oggetto)" color="{{oggetto.oggettoTornato ? 'rossoDelicato' : 'verdeDelicato'}}">
+        <ion-item  (click)="modificaOggetto(oggetto)" >
           <ion-thumbnail item-start>
                 <img src="{{oggetto.foto}}">
            </ion-thumbnail>
             <h1>{{oggetto.nome}}</h1>
             <h2>prestato a {{oggetto.nomeUser}} • il {{oggetto.data | date: 'dd/MM/yy'}}</h2>
+            <ion-icon item-end name="square" color="{{oggetto.oggettoTornato ? 'rossoDelicato' : 'verdeDelicato'}}"></ion-icon>
         </ion-item>
         <ion-item-options side="left">
           <button ion-button  class="buttonSlide" color="{{oggetto.oggettoTornato ? 'secondary' : 'danger'}}" (click)="toogleOggettoTornato(oggetto)">{{oggetto.oggettoTornato ? 'Tornato?': 'Prestato?'}}</button>
         </ion-item-options>
-    
+
         <ion-item-options side="right">
-          <button ion-button icon-only class="buttonSlide"  (click)="rimuoviOggetto(oggetto)" color="dark"><ion-icon class="icon" name="close-circle"></ion-icon></button>
+          <button ion-button icon-only class="buttonSlide"  (click)="rimuoviOggetto(oggetto)" color="dark"><ion-icon name="close-circle"></ion-icon></button>
         </ion-item-options>
       </ion-item-sliding>
   </ion-list>
