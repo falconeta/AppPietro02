@@ -15,6 +15,7 @@ import { OggettoProvider } from '../providers/oggetto/oggetto';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Camera } from '@ionic-native/camera';
 import { Device } from '@ionic-native/device';
+import { TapticEngine } from '@ionic-native/taptic-engine';
 import { WelcomePage } from '../pages/welcome/welcome';
 
 @NgModule({
@@ -45,9 +46,9 @@ import { WelcomePage } from '../pages/welcome/welcome';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    OggettoProvider, NativeStorage, Camera, Device, 
-    ModalController, 
-    
+    OggettoProvider, NativeStorage, Camera, Device, TapticEngine,
+    ModalController,
+
   ]
 })
 export class AppModule {}
