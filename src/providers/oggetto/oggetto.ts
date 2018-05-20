@@ -25,23 +25,23 @@ export class OggettoProvider {
   }
   // restituisce l'array di oggetti
   getOggetti(): Observable<Oggetto[]> {
-        return of(this.oggetti);
+    return of(this.oggetti);
   }
   // restituisce oggetto con avente l'id corrispondente
-  getOggetto(id: number): Observable<Oggetto> { 
+  getOggetto(id: number): Observable<Oggetto> {
     return of(this.oggetti.find(oggetto => oggetto.id === id));
   }
   // rimuove l'oggetto dall'array
-  removeOggetto(oggetto: Oggetto): void{
+  removeOggetto(oggetto: Oggetto): void {
     this.oggetti.forEach((item, index) => {
-      if(item.id === oggetto.id) this.oggetti.splice(index,1);
+      if (item.id === oggetto.id) this.oggetti.splice(index, 1);
     });
-    this.oggetti.forEach((item, index) => this.oggetti[index].id = index);
+    this.oggetti.forEach((item, index) => (this.oggetti[index].id = index));
     this.nativeStorage.setItem('items', this.oggetti).then();
     alert('rimosso');
   }
   // aggiunge la modifica al native storage
-  modifyOggetto(){
+  modifyOggetto() {
     this.nativeStorage.setItem('items', this.oggetti).then();
   }
 }
