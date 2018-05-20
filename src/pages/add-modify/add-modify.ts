@@ -50,8 +50,7 @@ oggetto: Oggetto;
       targetHeight: 1000,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      sourceType: 1
+      mediaType: this.camera.MediaType.PICTURE
     }
     // cattura l'immagine
     this.camera.getPicture(options).then(imageData =>
