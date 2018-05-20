@@ -20,17 +20,17 @@ import { Device } from '@ionic-native/device';
 export class AddModifyPage {
 selector: string;
 oggetto: Oggetto;
-  constructor(private oggettoProvider: OggettoProvider,  
+  constructor(private oggettoProvider: OggettoProvider,
               private navParams: NavParams,
               private camera: Camera,
-              private device: Device, 
-              private viewCtrl: ViewController) 
+              private device: Device,
+              private viewCtrl: ViewController)
   {// trasforma la pagina in modalità aggiungi o modifica
     this.selector = this.navParams.get('selector');
     this.selector === 'modifica' ? this.oggetto = this.navParams.get('oggetto') : this.createPage();
   }
   createPage(){
-    this.oggetto = new Oggetto; 
+    this.oggetto = new Oggetto;
     this.oggetto.data = new Date().toISOString();
   }
   saveModify(){//metodo chiamato dal bottone slva in modalità modifica
@@ -43,7 +43,7 @@ oggetto: Oggetto;
   }
   getFoto(){ // al click del div esegue questo metodo
     let type: number;
-    this.device.platform === 'iOS' ? type = 0 : type = 1; 
+    this.device.platform === 'iOS' ? type = 0 : type = 1;
     const options: CameraOptions = {
       quality: 20,
       targetWidth: 1000,
@@ -51,10 +51,10 @@ oggetto: Oggetto;
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      sourceType: type
+      sourceType: 1
     }
-    // cattura l'immagine 
-    this.camera.getPicture(options).then(imageData => 
+    // cattura l'immagine
+    this.camera.getPicture(options).then(imageData =>
       this.oggetto.foto = 'data:image/jpeg;base64,' + imageData);
   }
   close(){
