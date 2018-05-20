@@ -41,7 +41,7 @@ export class HomePage {
   }
   // imposta la propietà booleana(toogle) dell'oogetto oggetto
   toogleOggettoTornato(oggetto: Oggetto){
-    oggetto.oggettoTornato ? oggetto.oggettoTornato = false : oggetto.oggettoTornato = true;
+    oggetto.oggettoTornato = !oggetto.oggettoTornato;
     this.oggettoProvider.modifyOggetto(); // salva native storage
   }
 
