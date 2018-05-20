@@ -5,6 +5,7 @@ import { AddModifyPage } from '../add-modify/add-modify';
 import { OggettoProvider } from '../../providers/oggetto/oggetto';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { WelcomePage } from '../welcome/welcome';
+import { TapticEngine } from '@ionic-native/taptic-engine';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -14,6 +15,7 @@ export class HomePage {
   constructor(
     private modalCtrl: ModalController,
     public plt: Platform,
+    private taptic: TapticEngine,
     private nativeStorage: NativeStorage,
     private oggettoProvider: OggettoProvider,
     public navCtrl: NavController
@@ -53,6 +55,7 @@ export class HomePage {
   }
   // imposta la propietà booleana(toogle) dell'oogetto oggetto
   toogleOggettoTornato(oggetto: Oggetto) {
+    this.taptic.notification({ type: 'success' }).then(options => console.log(options));
     oggetto.oggettoTornato = !oggetto.oggettoTornato;
     this.oggettoProvider.modifyOggetto(); // salva native storage
   }
