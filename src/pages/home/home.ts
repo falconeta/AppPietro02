@@ -55,7 +55,7 @@ export class HomePage {
   }
   // imposta la propietà booleana(toogle) dell'oogetto oggetto
   toogleOggettoTornato(oggetto: Oggetto) {
-    this.taptic.notification({ type: 'success' }).then(options => console.log(options));
+    this.taptic.notification({ type: 'success' }).then();
     oggetto.oggettoTornato = !oggetto.oggettoTornato;
     this.oggettoProvider.modifyOggetto(); // salva native storage
   }
